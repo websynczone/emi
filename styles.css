@@ -1,0 +1,415 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  :root {
+    --primary: #1a73e8;
+    --primary-dark: #0d47a1;
+    --text: #212121;
+    --background: #f5f5f5;
+    --card-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --input-border: #e0e0e0;
+  }
+  
+  [data-theme="dark"] {
+    --primary: #4a90e2;
+    --primary-dark: #2a5db0;
+    --text: #e0e0e0;
+    --background: #121212;
+    --card-bg: #1e1e1e;
+    --shadow: rgba(255, 255, 255, 0.05);
+    --input-border: #333;
+  }
+  
+  body {
+    background: var(--background);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  .app-container {
+    width: 400px;
+    max-width: 400px;
+    min-height: 100vh;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px var(--shadow);
+    position: relative;
+  }
+  
+  /* Header */
+  .app-header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .app-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .theme-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  /* Dashboard */
+  .dashboard {
+    padding: 2rem 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .dashboard h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .tool-btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 1.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 90px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .tool-btn i, .tool-btn span {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .tool-btn i {
+    font-size: 1.8rem;
+    transition: transform 0.3s;
+  }
+  
+  .tool-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+  }
+  
+  .tool-btn:hover i {
+    transform: rotate(10deg);
+  }
+  
+  /* Tool Sections */
+  .app-content {
+    padding: 1rem;
+    flex: 1;
+    display: none;
+  }
+  
+  .app-content.active {
+    display: block;
+  }
+  
+  .tool-section {
+    display: none;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .tool-section.active {
+    display: block;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .tool-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Form Inputs */
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: var(--card-bg);
+    color: var(--text);
+    transition: border-color 0.3s;
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 5px rgba(26, 115, 232, 0.2);
+  }
+  
+  /* Tenure Controls */
+  .tenure-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--card-bg);
+    padding: 0.5rem;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+  }
+  
+  .tenure-controls input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  .tenure-controls input:focus {
+    border: none;
+    box-shadow: none;
+  }
+  
+  .increment-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .increment, .decrement {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    width: 2.2rem;
+    height: 1.8rem;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .increment:hover, .decrement:hover {
+    background: var(--primary-dark);
+    transform: scale(1.1);
+  }
+  
+  .tenure-controls select {
+    width: auto;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .tenure-controls select:focus {
+    border: none;
+    box-shadow: none;
+  }
+  
+  /* USD to INR Converter */
+  .converter-container {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow);
+    margin-bottom: 1rem;
+  }
+  
+  .currency-input {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  
+  .currency-input i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    color: var(--primary);
+  }
+  
+  .currency-input input {
+    border: none;
+    background: transparent;
+  }
+  
+  .currency-input input:focus {
+    border: none;
+    box-shadow: none;
+  }
+  
+  .swap-icon {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .swap-icon:hover {
+    transform: rotate(180deg);
+  }
+  
+  /* Button */
+  .calculate-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--primary);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .calculate-btn:hover {
+    background: var(--primary-dark);
+  }
+  
+  /* Result */
+  .result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text);
+    box-shadow: 0 2px 5px var(--shadow);
+    animation: slideUp 0.3s ease;
+  }
+  
+  .result p {
+    margin-bottom: 0.5rem;
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Mobile Optimization */
+  @media (max-width: 400px) {
+    .app-container {
+      width: 100%;
+    }
+    
+    .dashboard {
+      padding: 1.5rem 0.8rem;
+    }
+    
+    .tool-grid {
+      gap: 0.8rem;
+    }
+    
+    .tool-btn {
+      height: 80px;
+      padding: 1rem 0.4rem;
+    }
+  }
+  
+  .no-copy {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .tool-btn i {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .share-container {
+    margin-top: 15px;
+    text-align: right;
+  }
+  
+  .share-btn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .share-btn:hover {
+    background-color: #0d62c9;
+  }
+  
+  [data-theme="dark"] .share-btn {
+    background-color: #4285f4;
+  }
+  
+  [data-theme="dark"] .share-btn:hover {
+    background-color: #3367d6;
+  }

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1a73e8">
+  <meta name="description" content="India Finance Calculator App">
+  <title>India Finance App</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body data-theme="light">
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="no-copy">India Finance</h1>
+      <button id="theme-toggle" class="theme-btn">🌙</button>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <div class="tool-grid">
+        <button class="tool-btn" data-tool="emi"><i class="fas fa-money-bill-wave"></i><span class="no-copy">EMI Calculator</span></button>
+        <button class="tool-btn" data-tool="fd"><i class="fas fa-piggy-bank"></i><span class="no-copy">FD Calculator</span></button>
+        <button class="tool-btn" data-tool="sip"><i class="fas fa-chart-line"></i><span class="no-copy">SIP Calculator</span></button>
+        <button class="tool-btn" data-tool="ppf"><i class="fas fa-sack-dollar"></i><span class="no-copy">PPF Calculator</span></button>
+        <button class="tool-btn" data-tool="rd"><i class="fas fa-wallet"></i><span class="no-copy">RD Calculator</span></button>
+        <button class="tool-btn" data-tool="tax"><i class="fas fa-calculator"></i><span class="no-copy">Income Tax</span></button>
+        <button class="tool-btn" data-tool="gst"><i class="fas fa-tags"></i><span class="no-copy">GST Calculator</span></button>
+        <button class="tool-btn" data-tool="loan"><i class="fas fa-hand-holding-dollar"></i><span class="no-copy">Loan Eligibility</span></button>
+        <button class="tool-btn" data-tool="npv"><i class="fas fa-balance-scale"></i><span class="no-copy">Net Present Value</span></button>
+        <button class="tool-btn" data-tool="inr"><i class="fas fa-dollar-sign"></i><span class="no-copy">USD to INR</span></button>
+        <button class="tool-btn" data-tool="cagr"><i class="fas fa-chart-bar"></i><span class="no-copy">CAGR Calculator</span></button>
+        <button class="tool-btn" data-tool="si"><i class="fas fa-percentage"></i><span class="no-copy">Simple Interest</span></button>
+      </div>
+    </section>
+
+    <!-- Tool Sections -->
+    <main class="app-content">
+      <!-- EMI Calculator -->
+      <section id="emi-tool" class="tool-section">
+        <h2 class="no-copy">EMI Calculator</h2>
+        <form id="emi-form">
+          <div class="input-group">
+            <label for="emi-principal">Loan Amount (₹)</label>
+            <input type="number" id="emi-principal" placeholder="Loan amount" required>
+          </div>
+          <div class="input-group">
+            <label for="emi-rate">Interest Rate (% p.a.)</label>
+            <input type="number" step="0.1" id="emi-rate" placeholder="Interest rate %" required>
+          </div>
+          <div class="input-group">
+            <label for="emi-tenure">Tenure</label>
+            <div class="tenure-controls">
+              <input type="number" id="emi-tenure" placeholder="Years/Months" required>
+              <div class="increment-btns">
+                <button type="button" class="increment" data-input="emi-tenure">+</button>
+                <button type="button" class="decrement" data-input="emi-tenure">-</button>
+              </div>
+              <select id="emi-tenure-unit" required>
+                <option value="years">Years</option>
+                <option value="months">Months</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="emi-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="emi"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FD Calculator -->
+      <section id="fd-tool" class="tool-section">
+        <h2 class="no-copy">Fixed Deposit Calculator</h2>
+        <form id="fd-form">
+          <div class="input-group">
+            <label for="fd-principal">Principal (₹)</label>
+            <input type="number" id="fd-principal" placeholder="Deposit amount" required>
+          </div>
+          <div class="input-group">
+            <label for="fd-rate">Interest Rate (% p.a.)</label>
+            <input type="number" step="0.1" id="fd-rate" placeholder="Interest rate %" required>
+          </div>
+          <div class="input-group">
+            <label for="fd-tenure">Tenure (Years)</label>
+            <input type="number" id="fd-tenure" placeholder="Years" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="fd-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="fd"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIP Calculator -->
+      <section id="sip-tool" class="tool-section">
+        <h2 class="no-copy">SIP Calculator</h2>
+        <form id="sip-form">
+          <div class="input-group">
+            <label for="sip-amount">Monthly Investment (₹)</label>
+            <input type="number" id="sip-amount" placeholder="Monthly investment" required>
+          </div>
+          <div class="input-group">
+            <label for="sip-rate">Expected Return (% p.a.)</label>
+            <input type="number" step="0.1" id="sip-rate" placeholder="Expected return %" required>
+          </div>
+          <div class="input-group">
+            <label for="sip-tenure">Tenure (Years)</label>
+            <input type="number" id="sip-tenure" placeholder="Investment period" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="sip-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="sip"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PPF Calculator -->
+      <section id="ppf-tool" class="tool-section">
+        <h2 class="no-copy">PPF Calculator</h2>
+        <form id="ppf-form">
+          <div class="input-group">
+            <label for="ppf-amount">Yearly Investment (₹)</label>
+            <input type="number" id="ppf-amount" placeholder="Yearly investment" required>
+          </div>
+          <div class="input-group">
+            <label for="ppf-rate">Interest Rate (% p.a.)</label>
+            <input type="number" step="0.1" id="ppf-rate" placeholder="Interest rate %" required>
+          </div>
+          <div class="input-group">
+            <label for="ppf-tenure">Tenure (Years)</label>
+            <input type="number" id="ppf-tenure" placeholder="Investment period" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="ppf-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="ppf"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RD Calculator -->
+      <section id="rd-tool" class="tool-section">
+        <h2 class="no-copy">Recurring Deposit Calculator</h2>
+        <form id="rd-form">
+          <div class="input-group">
+            <label for="rd-amount">Monthly Deposit (₹)</label>
+            <input type="number" id="rd-amount" placeholder="Monthly deposit" required>
+          </div>
+          <div class="input-group">
+            <label for="rd-rate">Interest Rate (% p.a.)</label>
+            <input type="number" step="0.1" id="rd-rate" placeholder="Interest rate %" required>
+          </div>
+          <div class="input-group">
+            <label for="rd-tenure">Tenure (Years)</label>
+            <input type="number" id="rd-tenure" placeholder="Deposit period" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="rd-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="rd"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Income Tax Calculator -->
+      <section id="tax-tool" class="tool-section">
+        <h2 class="no-copy">Income Tax Calculator</h2>
+        <form id="tax-form">
+          <div class="input-group">
+            <label for="tax-income">Annual Income (₹)</label>
+            <input type="number" id="tax-income" placeholder="Annual income" required>
+          </div>
+          <div class="input-group">
+            <label for="tax-regime">Tax Regime</label>
+            <select id="tax-regime" required>
+              <option value="old">Old Regime</option>
+              <option value="new">New Regime</option>
+            </select>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="tax-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="tax"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- GST Calculator -->
+      <section id="gst-tool" class="tool-section">
+        <h2 class="no-copy">GST Calculator</h2>
+        <form id="gst-form">
+          <div class="input-group">
+            <label for="gst-amount">Amount (₹)</label>
+            <input type="number" id="gst-amount" placeholder="Amount before GST" required>
+          </div>
+          <div class="input-group">
+            <label for="gst-rate">GST Rate (%)</label>
+            <select id="gst-rate" required>
+              <option value="5">5%</option>
+              <option value="12">12%</option>
+              <option value="18">18%</option>
+              <option value="28">28%</option>
+            </select>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="gst-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="gst"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Loan Eligibility Calculator -->
+      <section id="loan-tool" class="tool-section">
+        <h2 class="no-copy">Loan Eligibility Calculator</h2>
+        <form id="loan-form">
+          <div class="input-group">
+            <label for="loan-income">Monthly Income (₹)</label>
+            <input type="number" id="loan-income" placeholder="Monthly income" required>
+          </div>
+          <div class="input-group">
+            <label for="loan-expenses">Monthly Expenses (₹)</label>
+            <input type="number" id="loan-expenses" placeholder="Monthly expenses" required>
+          </div>
+          <div class="input-group">
+            <label for="loan-rate">Interest Rate (% p.a.)</label>
+            <input type="number" step="0.1" id="loan-rate" placeholder="Interest rate %" required>
+          </div>
+          <div class="input-group">
+            <label for="loan-tenure">Tenure (Years)</label>
+            <input type="number" id="loan-tenure" placeholder="Years" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="loan-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="loan"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- NPV Calculator -->
+      <section id="npv-tool" class="tool-section">
+        <h2 class="no-copy">Net Present Value Calculator</h2>
+        <form id="npv-form">
+          <div class="input-group">
+            <label for="npv-initial">Initial Investment (₹)</label>
+            <input type="number" id="npv-initial" placeholder="Initial investment" required>
+          </div>
+          <div class="input-group">
+            <label for="npv-rate">Discount Rate (%)</label>
+            <input type="number" step="0.1" id="npv-rate" placeholder="Discount rate %" required>
+          </div>
+          <div class="input-group">
+            <label for="npv-flows">Cash Flows (comma-separated, ₹)</label>
+            <input type="text" id="npv-flows" placeholder="Cash flows (comma-separated)" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="npv-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="npv"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- USD to INR Converter -->
+      <section id="inr-tool" class="tool-section">
+        <h2 class="no-copy">USD to INR Converter</h2>
+        <div class="converter-container">
+          <div class="input-group">
+            <label for="inr-usd">Amount (USD)</label>
+            <div class="currency-input">
+              <i class="fas fa-dollar-sign"></i>
+              <input type="number" id="inr-usd" placeholder="Amount in USD" step="0.01">
+            </div>
+          </div>
+          <div class="swap-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="input-group">
+            <label for="inr-inr">Amount (INR)</label>
+            <div class="currency-input">
+              <i class="fas fa-rupee-sign"></i>
+              <input type="number" id="inr-inr" placeholder="Amount in INR" step="0.01">
+            </div>
+          </div>
+          <button id="inr-convert" class="calculate-btn">Convert</button>
+        </div>
+        <div id="inr-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="inr"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAGR Calculator -->
+      <section id="cagr-tool" class="tool-section">
+        <h2 class="no-copy">CAGR Calculator</h2>
+        <form id="cagr-form">
+          <div class="input-group">
+            <label for="cagr-initial">Initial Value (₹)</label>
+            <input type="number" id="cagr-initial" placeholder="Initial value" required>
+          </div>
+          <div class="input-group">
+            <label for="cagr-final">Final Value (₹)</label>
+            <input type="number" id="cagr-final" placeholder="Final value" required>
+          </div>
+          <div class="input-group">
+            <label for="cagr-tenure">Tenure (Years)</label>
+            <input type="number" id="cagr-tenure" placeholder="Years" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="cagr-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="cagr"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Simple Interest Calculator -->
+      <section id="si-tool" class="tool-section">
+        <h2 class="no-copy">Simple Interest Calculator</h2>
+        <form id="si-form">
+          <div class="input-group">
+            <label for="si-principal">Principal (₹)</label>
+            <input type="number" id="si-principal" placeholder="Principal amount" required>
+          </div>
+          <div class="input-group">
+            <label for="si-rate">Interest Rate (% p.a.)</label>
+            <input type="number" step="0.1" id="si-rate" placeholder="Interest rate %" required>
+          </div>
+          <div class="input-group">
+            <label for="si-tenure">Tenure (Years)</label>
+            <input type="number" id="si-tenure" placeholder="Years" required>
+          </div>
+          <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+        <div id="si-result" class="result">
+          <div class="share-container">
+            <button class="share-btn" data-tool="si"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
